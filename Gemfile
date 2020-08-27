@@ -28,6 +28,7 @@ group :test do
   gem 'database_cleaner-active_record'
   gem 'faker'
   gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
