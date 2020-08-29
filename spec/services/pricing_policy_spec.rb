@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PricingPolicy, type: :serice do
+RSpec.describe PricingPolicy, type: :service do
 
   describe '.perform' do
     let(:strategy) { 'fixed' }

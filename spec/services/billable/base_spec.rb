@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Billable::Base, type: :serice do
+RSpec.describe Billable::Base, type: :service do
   let(:base_price) { 1000.0 }
   let(:instance) { described_class.new(base_price) }
 

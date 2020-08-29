@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BillCalculator, type: :serice do
+RSpec.describe BillCalculator, type: :service do
 
   describe '.checkout' do
     let(:account_id) { 1 }

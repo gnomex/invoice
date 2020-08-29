@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Billable::DynamicFactorCalculator, type: :serice do
+RSpec.describe Billable::DynamicFactorCalculator, type: :service do
   let(:url) { 'https://github.com/gnomex' }
   let(:word) { 'ruby' }
   let(:instance) { described_class.new(url, word) }
