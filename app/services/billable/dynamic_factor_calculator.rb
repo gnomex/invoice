@@ -11,7 +11,7 @@ class Billable::DynamicFactorCalculator
 
   def count
     # wrap the method to ilustrate how to keep the internal API isolated
-    reckoner
+    reckoner.parse word, resource
   end
 
   private
@@ -29,12 +29,35 @@ class Billable::DynamicFactorCalculator
   end
 
   def reckoner
-    fns = {
-      "XmlFile": lambda { Nokogiri::XML(resource.body).search(word).count },
-      "Page": lambda { resource.body.to_s.scan(/(?=#{word})/).count }
-    }.with_indifferent_access
-
-    fns[resource_class_sym].call
+    "#{resource_class_sym}Parser".constantize
   end
 
+end
+
+class XmlParser
+  def initialize(element)
+    @element = element
+  end
+
+  def self.parse(element, resource)
+    new(element).parse(resource)
+  end
+
+  def parse(resource)
+    Nokogiri::XML(resource.body).search(@element).count
+  end
+end
+
+class PageParser
+  def initialize(word)
+    @word = word
+  end
+
+  def self.parse(word, resource)
+    new(word).parse(resource)
+  end
+
+  def parse(resource)
+    resource.body.to_s.scan(/(?=#{@word})/).count
+  end
 end
